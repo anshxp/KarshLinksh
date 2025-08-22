@@ -1,3 +1,8 @@
+// prisma/schema.prisma
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,52 +13,47 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  email       String    @unique
-  name        String?
-  links       Link[]
-  folders     Folder[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  password  String?
+  googleId  String?   @unique
+  avatarUrl String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  links     Link[]
+  folders   Folder[]
+  sessions  Session[]
 }
 
 model Link {
-  id          Int       @id @default(autoincrement())
-  originalUrl String
-  shortCode   String    @unique
-  user        User?     @relation(fields: [userId], references: [id])
-  userId      Int?
-  folder      Folder?   @relation(fields: [folderId], references: [id])
-  folderId    Int?
+  id          String    @id @default(cuid())
+  url         String
+  title       String?
+  description String?
   createdAt   DateTime  @default(now())
-  clicks      Click[]
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  folder      Folder?   @relation(fields: [folderId], references: [id])
+  folderId    String?
 }
 
 model Folder {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(cuid())
   name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   user      User      @relation(fields: [userId], references: [id])
-  userId    Int
+  userId    String
   links     Link[]
-  createdAt DateTime  @default(now())
 }
 
-model Click {
-  id        Int       @id @default(autoincrement())
-  link      Link      @relation(fields: [linkId], references: [id])
-  linkId    Int
+model Session {
+  id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
-  ip        String?
-  userAgent String?
-  referrer  String?
-}
-
-model Subscription {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int
-  tier        String
-  active      Boolean   @default(true)
-  startedAt   DateTime  @default(now())
-  expiresAt   DateTime?
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  expiresAt DateTime
 }

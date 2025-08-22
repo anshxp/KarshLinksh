@@ -24,8 +24,8 @@ export default function Home() {
       <main className={styles.main}>
         <ThemeImage
           className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
+          srcLight="/turborepo-dark.svg"
+          srcDark="/turborepo-light.svg"
           alt="Turborepo logo"
           width={180}
           height={38}
@@ -33,7 +33,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
+            Get started by editing <code>apps/frontend/app/page.tsx</code>
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
