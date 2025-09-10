@@ -6,8 +6,8 @@ export declare class AuthController {
     googleAuth(req: any): Promise<void>;
     googleAuthRedirect(req: Request, res: Response): Promise<void>;
     getProfile(req: Request): Promise<{
-        name: string | null;
         id: string;
+        name: string | null;
         email: string;
         avatar: string | null;
         plan: import("@prisma/client").$Enums.Plan;

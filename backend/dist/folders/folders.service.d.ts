@@ -8,44 +8,44 @@ export declare class FoldersService {
             links: number;
         };
     } & {
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
     getUserFolders(userId: string): Promise<({
-        links: {
-            id: string;
-            shortCode: string;
-            clicks: number;
-        }[];
         _count: {
             links: number;
         };
+        links: {
+            shortCode: string;
+            id: string;
+            clicks: number;
+        }[];
     } & {
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     })[]>;
     updateFolder(userId: string, folderId: string, updateFolderDto: UpdateFolderDto): Promise<{
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
     deleteFolder(userId: string, folderId: string): Promise<{
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
 }

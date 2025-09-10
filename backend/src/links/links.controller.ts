@@ -1,45 +1,46 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  Res,
+  HttpStatus,
+  NotFoundException,
+} from '@nestjs/common';
+import { Response } from 'express';
 import { LinksService } from './links.service';
 import { CreateLinkDto, UpdateLinkDto } from './dto';
-import { AuthGuard } from '@nestjs/passport';
-import type { Request } from 'express';
 
 @Controller('links')
 export class LinksController {
   constructor(private readonly linksService: LinksService) {}
 
   @Post()
-  @UseGuards(AuthGuard('jwt'))
-  create(@Body() createLinkDto: CreateLinkDto, @Req() req: Request) {
-    const userId = (req.user as any).id;
-    return this.linksService.createLink(userId, createLinkDto);
+  create(@Body() createLinkDto: CreateLinkDto) {
+    return this.linksService.create(createLinkDto);
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
-  findAll(@Req() req: Request) {
-    const userId = (req.user as any).id;
-    return this.linksService.getUserLinks(userId);
+  findAll(@Query() query: any) {
+    return this.linksService.findAll(query);
   }
 
-  @Get(':shortCode')
-  redirect(@Param('shortCode') shortCode: string, @Req() req: Request) {
-    // Note: You need a separate endpoint to record clicks in the background
-    // and another for redirection to the original URL.
-    return this.linksService.redirectLink(shortCode);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.linksService.findOne(id);
   }
 
   @Patch(':id')
-  @UseGuards(AuthGuard('jwt'))
-  update(@Param('id') id: string, @Body() updateLinkDto: UpdateLinkDto, @Req() req: Request) {
-    const userId = (req.user as any).id;
-    return this.linksService.updateLink(userId, id, updateLinkDto);
+  update(@Param('id') id: string, @Body() updateLinkDto: UpdateLinkDto) {
+    return this.linksService.update(id, updateLinkDto);
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
-  remove(@Param('id') id: string, @Req() req: Request) {
-    const userId = (req.user as any).id;
-    return this.linksService.deleteLink(userId, id);
+  remove(@Param('id') id: string) {
+    return this.linksService.remove(id);
   }
 }

@@ -1,7 +1,11 @@
 export declare class CreateLinkDto {
     originalUrl: string;
+    shortCode?: string;
     customCode?: string;
-    folderId?: string;
-    expiresAt?: Date;
+    title?: string;
+    description?: string;
+    favicon?: string;
+    isActive?: boolean;
+    expiresAt?: string;
     password?: string;
 }

@@ -1,24 +1,42 @@
-import { IsString, IsUrl, IsOptional, IsUUID, IsDateString, Length } from 'class-validator';
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsOptional, IsBoolean, IsDateString } from 'class-validator';
 
 export class CreateLinkDto {
-  @IsUrl({}, { message: 'Must be a valid URL' })
+  @IsString()
   originalUrl: string;
 
   @IsOptional()
   @IsString()
-  @Length(3, 15, { message: 'Custom code must be between 3 and 15 characters' })
+  shortCode?: string;
+
+  @IsOptional()
+  @IsString()
   customCode?: string;
 
   @IsOptional()
-  @IsUUID()
-  folderId?: string;
+  @IsString()
+  title?: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  favicon?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isActive?: boolean;
 
   @IsOptional()
   @IsDateString()
-  expiresAt?: Date;
+  expiresAt?: string;
 
   @IsOptional()
   @IsString()
   password?: string;
+
+  // @IsOptional()
+  // @IsString()
+  // folderId?: string;
 }

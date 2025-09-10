@@ -3,111 +3,96 @@ import { CreateLinkDto, UpdateLinkDto } from './dto';
 export declare class LinksService {
     private prisma;
     constructor(prisma: PrismaService);
-    createLink(userId: string, createLinkDto: CreateLinkDto): Promise<{
-        folder: {
-            name: string;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            userId: string;
-            color: import("@prisma/client").$Enums.FolderColor;
-        } | null;
-        _count: {
-            analytics: number;
-        };
-    } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
+    create(createLinkDto: CreateLinkDto): Promise<{
         originalUrl: string;
-        folderId: string | null;
-        expiresAt: Date | null;
-        password: string | null;
         shortCode: string;
         title: string | null;
         description: string | null;
         favicon: string | null;
-        clicks: number;
         isActive: boolean;
-        userId: string;
-    }>;
-    getUserLinks(userId: string): Promise<({
-        folder: {
-            name: string;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            userId: string;
-            color: import("@prisma/client").$Enums.FolderColor;
-        } | null;
-        _count: {
-            analytics: number;
-        };
-    } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        originalUrl: string;
-        folderId: string | null;
         expiresAt: Date | null;
         password: string | null;
+        id: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
+    }>;
+    findAll(query?: any): Promise<{
+        originalUrl: string;
         shortCode: string;
         title: string | null;
         description: string | null;
         favicon: string | null;
-        clicks: number;
         isActive: boolean;
-        userId: string;
-    })[]>;
-    updateLink(userId: string, linkId: string, updateLinkDto: UpdateLinkDto): Promise<{
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        originalUrl: string;
-        folderId: string | null;
         expiresAt: Date | null;
         password: string | null;
+        id: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
+    }[]>;
+    findOne(id: string): Promise<{
+        originalUrl: string;
         shortCode: string;
         title: string | null;
         description: string | null;
         favicon: string | null;
-        clicks: number;
         isActive: boolean;
-        userId: string;
-    }>;
-    deleteLink(userId: string, linkId: string): Promise<{
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        originalUrl: string;
-        folderId: string | null;
         expiresAt: Date | null;
         password: string | null;
+        id: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
+    } | null>;
+    findByShortCode(shortCode: string): Promise<{
+        originalUrl: string;
         shortCode: string;
         title: string | null;
         description: string | null;
         favicon: string | null;
-        clicks: number;
         isActive: boolean;
-        userId: string;
-    }>;
-    redirectLink(shortCode: string, password?: string): Promise<{
-        redirectUrl: string;
-    }>;
-    recordClick(linkId: string, request: any): Promise<{
+        expiresAt: Date | null;
+        password: string | null;
         id: string;
-        userAgent: string | null;
-        referer: string | null;
-        ip: string | null;
-        country: string | null;
-        city: string | null;
-        device: string | null;
-        browser: string | null;
-        os: string | null;
-        clickedAt: Date;
-        linkId: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
+    } | null>;
+    update(id: string, updateLinkDto: UpdateLinkDto): Promise<{
+        originalUrl: string;
+        shortCode: string;
+        title: string | null;
+        description: string | null;
+        favicon: string | null;
+        isActive: boolean;
+        expiresAt: Date | null;
+        password: string | null;
+        id: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
     }>;
-    private fetchUrlMetadata;
-    private parseUserAgent;
-    private getGeoLocation;
+    remove(id: string): Promise<{
+        originalUrl: string;
+        shortCode: string;
+        title: string | null;
+        description: string | null;
+        favicon: string | null;
+        isActive: boolean;
+        expiresAt: Date | null;
+        password: string | null;
+        id: string;
+        clicks: number;
+        createdAt: Date;
+        updatedAt: Date;
+        folderId: string | null;
+    }>;
+    private generateShortCode;
+    private generateUniqueShortCode;
 }

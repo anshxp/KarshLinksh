@@ -13,31 +13,54 @@ exports.CreateLinkDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateLinkDto {
     originalUrl;
+    shortCode;
     customCode;
-    folderId;
+    title;
+    description;
+    favicon;
+    isActive;
     expiresAt;
     password;
 }
 exports.CreateLinkDto = CreateLinkDto;
 __decorate([
-    (0, class_validator_1.IsUrl)({}, { message: 'Must be a valid URL' }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateLinkDto.prototype, "originalUrl", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(3, 15, { message: 'Custom code must be between 3 and 15 characters' }),
+    __metadata("design:type", String)
+], CreateLinkDto.prototype, "shortCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateLinkDto.prototype, "customCode", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateLinkDto.prototype, "folderId", void 0);
+], CreateLinkDto.prototype, "title", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateLinkDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateLinkDto.prototype, "favicon", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], CreateLinkDto.prototype, "isActive", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsDateString)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], CreateLinkDto.prototype, "expiresAt", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),

@@ -9,44 +9,44 @@ export declare class FoldersController {
             links: number;
         };
     } & {
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
     findAll(req: Request): Promise<({
-        links: {
-            id: string;
-            shortCode: string;
-            clicks: number;
-        }[];
         _count: {
             links: number;
         };
+        links: {
+            shortCode: string;
+            id: string;
+            clicks: number;
+        }[];
     } & {
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     })[]>;
     update(id: string, updateFolderDto: UpdateFolderDto, req: Request): Promise<{
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
     remove(id: string, req: Request): Promise<{
-        name: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        name: string;
         color: import("@prisma/client").$Enums.FolderColor;
+        userId: string;
     }>;
 }

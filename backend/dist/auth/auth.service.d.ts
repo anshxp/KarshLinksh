@@ -10,8 +10,8 @@ export declare class AuthService {
         access_token: string;
     }>;
     getProfile(userId: string): Promise<{
-        name: string | null;
         id: string;
+        name: string | null;
         email: string;
         avatar: string | null;
         plan: import("@prisma/client").$Enums.Plan;

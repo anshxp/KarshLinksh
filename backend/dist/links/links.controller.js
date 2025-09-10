@@ -16,75 +16,62 @@ exports.LinksController = void 0;
 const common_1 = require("@nestjs/common");
 const links_service_1 = require("./links.service");
 const dto_1 = require("./dto");
-const passport_1 = require("@nestjs/passport");
 let LinksController = class LinksController {
     linksService;
     constructor(linksService) {
         this.linksService = linksService;
     }
-    create(createLinkDto, req) {
-        const userId = req.user.id;
-        return this.linksService.createLink(userId, createLinkDto);
+    create(createLinkDto) {
+        return this.linksService.create(createLinkDto);
     }
-    findAll(req) {
-        const userId = req.user.id;
-        return this.linksService.getUserLinks(userId);
+    findAll(query) {
+        return this.linksService.findAll(query);
     }
-    redirect(shortCode, req) {
-        return this.linksService.redirectLink(shortCode);
+    findOne(id) {
+        return this.linksService.findOne(id);
     }
-    update(id, updateLinkDto, req) {
-        const userId = req.user.id;
-        return this.linksService.updateLink(userId, id, updateLinkDto);
+    update(id, updateLinkDto) {
+        return this.linksService.update(id, updateLinkDto);
     }
-    remove(id, req) {
-        const userId = req.user.id;
-        return this.linksService.deleteLink(userId, id);
+    remove(id) {
+        return this.linksService.remove(id);
     }
 };
 exports.LinksController = LinksController;
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [dto_1.CreateLinkDto, Object]),
+    __metadata("design:paramtypes", [dto_1.CreateLinkDto]),
     __metadata("design:returntype", void 0)
 ], LinksController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
-    __param(0, (0, common_1.Req)()),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], LinksController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':shortCode'),
-    __param(0, (0, common_1.Param)('shortCode')),
-    __param(1, (0, common_1.Req)()),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], LinksController.prototype, "redirect", null);
+], LinksController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
-    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, dto_1.UpdateLinkDto, Object]),
+    __metadata("design:paramtypes", [String, dto_1.UpdateLinkDto]),
     __metadata("design:returntype", void 0)
 ], LinksController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], LinksController.prototype, "remove", null);
 exports.LinksController = LinksController = __decorate([
