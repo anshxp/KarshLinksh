@@ -1,15 +1,6 @@
 // frontend/src/types/index.ts
-import { FolderColor } from '@prisma/client'; // Assuming you might share enums
 
-// --- Data Models (from Prisma/API Responses) ---
-export interface User {
-  id: string;
-  email: string;
-  name: string | null;
-  avatar: string | null;
-  plan: 'FREE' | 'PRO' | 'BUSINESS';
-}
-
+// --- Frontend-safe enum ---
 export enum FolderColor {
   BLUE = 'BLUE',
   GREEN = 'GREEN',
@@ -17,6 +8,15 @@ export enum FolderColor {
   PURPLE = 'PURPLE',
   RED = 'RED',
   YELLOW = 'YELLOW',
+}
+
+// --- Data Models ---
+export interface User {
+  id: string;
+  email: string;
+  name: string | null;
+  avatar: string | null;
+  plan: 'FREE' | 'PRO' | 'BUSINESS';
 }
 
 export interface Folder {
@@ -30,7 +30,7 @@ export interface Folder {
 }
 
 export interface Link {
-  id:string;
+  id: string;
   originalUrl: string;
   shortCode: string;
   title: string | null;
@@ -45,9 +45,7 @@ export interface Link {
   updatedAt: string;
 }
 
-// --- API Payloads (from DTOs) ---
-
-// Matches create-link.dto.ts
+// --- API Payloads ---
 export interface CreateLinkData {
   originalUrl: string;
   customCode?: string;
@@ -55,15 +53,11 @@ export interface CreateLinkData {
   expiresAt?: Date;
   password?: string;
 }
-
-// Matches update-link.dto.ts
 export type UpdateLinkData = Partial<CreateLinkData>;
 
-// Matches create-folder.dto.ts
 export interface CreateFolderData {
   name: string;
   color: FolderColor;
 }
-
-// Matches update-folder.dto.ts
 export type UpdateFolderData = Partial<CreateFolderData>;
+  

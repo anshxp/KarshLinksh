@@ -1,6 +1,6 @@
 // frontend/src/store/linkStore.ts
 import { create } from 'zustand';
-import api from '@/services/api';
+import {api} from '@/services/api';
 import type {
   User, Link, Folder,
   CreateLinkData, UpdateLinkData,

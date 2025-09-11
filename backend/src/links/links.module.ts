@@ -6,5 +6,6 @@ import { PrismaService } from '../prisma/prisma.service';
 @Module({
   controllers: [LinksController],
   providers: [LinksService, PrismaService],
+  exports: [LinksService],  // 👈 make it available outside this module
 })
 export class LinksModule {}

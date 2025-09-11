@@ -18,7 +18,12 @@ export class AuthController {
   @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
     const { access_token } = await this.authService.login(req.user as any);
-    
+     res.cookie('jwt', access_token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+
     // IMPORTANT FIX: Redirecting to the correct Vite port (8080)
     res.redirect(`http://localhost:8080/auth/callback?token=${access_token}`);
   }

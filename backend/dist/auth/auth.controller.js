@@ -25,6 +25,11 @@ let AuthController = class AuthController {
     }
     async googleAuthRedirect(req, res) {
         const { access_token } = await this.authService.login(req.user);
+        res.cookie('jwt', access_token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: 24 * 60 * 60 * 1000,
+        });
         res.redirect(`http://localhost:8080/auth/callback?token=${access_token}`);
     }
     async getProfile(req) {

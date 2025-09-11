@@ -18,6 +18,7 @@ exports.LinksModule = LinksModule = __decorate([
     (0, common_1.Module)({
         controllers: [links_controller_1.LinksController],
         providers: [links_service_1.LinksService, prisma_service_1.PrismaService],
+        exports: [links_service_1.LinksService],
     })
 ], LinksModule);
 //# sourceMappingURL=links.module.js.map
