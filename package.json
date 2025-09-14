@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "LinkSh URL Shortener - Full Stack Application",
   "scripts": {
+    "start": "nest start",
+    "postinstall": "prisma migrate deploy",
     "dev": "concurrently \"npm run dev:db\" \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run start:dev",
